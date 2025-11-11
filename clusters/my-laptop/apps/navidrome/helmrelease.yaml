@@ -28,11 +28,10 @@ spec:
             nodePort: 30533
     
     persistence:
-      music:
+      songs:
         enabled: true
-        type: hostPath
-        hostPath: "C:\\Users\\ahorn\\Music"
-        mountPath: /music
+        type: emptyDir
+        mountPath: /songs
     
     env:
-      ND_MUSICFOLDER: "/music"
+      ND_MUSICFOLDER: "/songs"
