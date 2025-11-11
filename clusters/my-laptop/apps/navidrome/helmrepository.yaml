@@ -5,4 +5,4 @@ metadata:
   namespace: default
 spec:
   interval: 10m
-  url: https://djjudas21.github.io/helm-charts
+  url: https://djjudas21.github.io/charts/
