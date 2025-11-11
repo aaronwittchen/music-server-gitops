@@ -27,5 +27,9 @@ spec:
             targetPort: 4533
             nodePort: 30533
     
+    persistence:
+      music:
+        enabled: false
+    
     env:
       ND_MUSICFOLDER: "C:\\Users\\ahorn\\Music"
