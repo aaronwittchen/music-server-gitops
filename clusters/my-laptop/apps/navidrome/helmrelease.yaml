@@ -27,11 +27,5 @@ spec:
             targetPort: 4533
             nodePort: 30533
     
-    persistence:
-      songs:
-        enabled: true
-        type: emptyDir
-        mountPath: /songs
-    
     env:
-      ND_MUSICFOLDER: "/songs"
+      ND_MUSICFOLDER: "C:\\Users\\ahorn\\Music"
