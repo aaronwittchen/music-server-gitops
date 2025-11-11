@@ -14,9 +14,38 @@ spec:
         name: navidrome-repo
         namespace: default
   values:
+    replicaCount: 3
+    
     image:
       repository: deluan/navidrome
       tag: "0.58.5"
+    
+    affinity:
+      podAntiAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 100
+          podAffinityTerm:
+            labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - navidrome
+            topologyKey: kubernetes.io/hostname
+    
+    livenessProbe:
+      httpGet:
+        path: /
+        port: 4533
+      initialDelaySeconds: 30
+      periodSeconds: 10
+    
+    readinessProbe:
+      httpGet:
+        path: /
+        port: 4533
+      initialDelaySeconds: 5
+      periodSeconds: 5
     
     service:
       main:
@@ -26,3 +55,19 @@ spec:
             port: 4533
             targetPort: 4533
             nodePort: 30533
+    
+    persistence:
+      music:
+        enabled: true
+        type: hostPath
+        hostPath: "C:/Users/username/Music"
+        mountPath: /music
+        readOnly: true
+    
+    resources:
+      requests:
+        cpu: 250m
+        memory: 256Mi
+      limits:
+        cpu: 500m
+        memory: 512Mi

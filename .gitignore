@@ -1,4 +1,5 @@
 info.md
+notes.md
 
 # Python
 __pycache__/
@@ -85,8 +86,3 @@ $RECYCLE.BIN/
 .directory
 .Trash-*
 .nfs*
-
-# Project specific (add your own rules below this line)
-# Example:
-# config/
-# credentials.json

@@ -1,0 +1,32 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: syncthing
+  namespace: default
+spec:
+  interval: 10m
+  chart:
+    spec:
+      chart: syncthing
+      version: "12.0.0"
+      sourceRef:
+        kind: HelmRepository
+        name: syncthing-repo
+        namespace: default
+  values:
+    image:
+      repository: syncthing/syncthing
+      tag: "latest"
+    
+    service:
+      main:
+        type: NodePort
+        ports:
+          http:
+            port: 8384
+            targetPort: 8384
+            nodePort: 30384
+    
+    env:
+      PUID: "1000"
+      PGID: "1000"
