@@ -14,15 +14,25 @@
 9. Install Flux CLI with `choco install flux` or `winget install flux`
 10. Verify Flux is installed: `flux version`
 11. Bootstrap Flux to your Git repo
-12. Verify Flux is running: `flux get all`
+flux bootstrap github \
+  --owner=<your-github-username> \
+  --repository=music-server-gitops \
+  --branch=main \
+  --path=clusters/my-laptop \
+  --personal
+Go to github.com > Settings > Developer settings > Personal access tokens > Tokens (classic) > Generate new token
+Give it permissions: repo and workflow
+Copy the token, paste it when the terminal asks
+12. Verify Flux is running: `flux get all` and `kubectl get pods`
 13. Goal: Flux is watching your Git repo
 
 **Phase 4: Deploy Navidrome**
-13. Install Helm CLI
-14. Create Navidrome Helm values file
-15. Create Flux HelmRelease manifest
-16. Push to Git, watch Flux deploy it
-17. Goal: Navidrome running in K8s
+1.  Install Helm CLI on laptop with `winget install Helm.Helm`
+2.  Verify Helm is installed: `helm version`
+3.  Create Navidrome Helm values file
+4.  Create Flux HelmRelease manifest
+5.  Push to Git, watch Flux deploy it
+6.  Goal: Navidrome running in K8s
 
 **Phase 5: Storage & Access**
 18. Configure persistent storage for music folder

@@ -1,0 +1,35 @@
+# Navidrome Helm Chart Values
+
+replicaCount: 1
+
+image:
+  repository: deluan/navidrome
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: NodePort
+  port: 4533
+  targetPort: 4533
+  nodePort: 30533
+
+persistence:
+  enabled: true
+  size: 100Gi
+  mountPath: /music
+  # Replace with your actual music folder path
+  hostPath: "C:\\Users\\<username>\\Music"
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 250m
+    memory: 256Mi
+
+env:
+  - name: ND_BASEURL
+    value: "/"
+  - name: ND_LOGLEVEL
+    value: "info"

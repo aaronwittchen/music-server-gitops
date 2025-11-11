@@ -1,0 +1,29 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: navidrome
+  namespace: default
+spec:
+  interval: 10m
+  chart:
+    spec:
+      chart: navidrome
+      sourceRef:
+        kind: HelmRepository
+        name: navidrome-repo
+        namespace: default
+  values:
+    image:
+      repository: deluan/navidrome
+      tag: latest
+    service:
+      type: NodePort
+      port: 4533
+      targetPort: 4533
+      nodePort: 30533
+    persistence:
+      enabled: true
+      size: 100Gi
+      mountPath: /music
+      hostPath:
+        path: "C:\\Users\\<username>\\Music"
